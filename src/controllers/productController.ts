@@ -31,3 +31,25 @@ export const getAllProducts = async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Error al obtener productos', error });
     }
 };
+
+export const createMultipleProducts = async (req: Request, res: Response) => {
+    try {
+        const productos = req.body;
+
+        if (!Array.isArray(productos) || productos.length === 0) {
+            return res.status(400).json({ message: 'Debes enviar un arreglo de productos' });
+        }
+
+        const nuevosProductos = await Product.insertMany(productos);
+
+        res.status(201).json({
+            message: 'Productos creados exitosamente',
+            productos: nuevosProductos
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al crear productos en lote' });
+    }
+};
+
+

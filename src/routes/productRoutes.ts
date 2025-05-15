@@ -1,6 +1,9 @@
 import { Router } from 'express';
-import { createProduct } from '../controllers/productController';
-import { getAllProducts } from '../controllers/productController';
+import {
+  createProduct,
+  getAllProducts,
+  createMultipleProducts
+} from '../controllers/productController';
 
 const router = Router();
 
@@ -45,7 +48,35 @@ const router = Router();
  *               $ref: '#/components/schemas/Producto'
  */
 
+/**
+ * @swagger
+ * /api/products/batch:
+ *   post:
+ *     summary: Crear múltiples productos en lote
+ *     tags: [Productos]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               $ref: '#/components/schemas/Producto'
+ *     responses:
+ *       201:
+ *         description: Productos creados exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Producto'
+ */
+
 router.post('/', createProduct);
 router.get('/', getAllProducts);
+router.post('/batch', (req, res, next) => {
+  createMultipleProducts(req, res).catch(next);
+});
 
 export default router;

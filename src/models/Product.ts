@@ -9,7 +9,7 @@ const productSchema = new Schema({
   imagen: { type: String },
 }, {
   timestamps: true,
-  collection: 'productos' // IMPORTANTE: Que coincida con tu colección en MongoDB
+  collection: 'productos' // IMPORTANTE: Que coincida con la colección en MongoDB
 });
 
 export default model('Product', productSchema);
