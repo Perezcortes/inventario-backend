@@ -40,6 +40,39 @@ const swaggerOptions = {
             },
           },
         },
+        Proveedor: {
+          type: 'object',
+          required: ['nombre'],
+          properties: {
+            nombre: {
+              type: 'string',
+              example: 'Distribuidora Morales',
+            },
+            contacto: {
+              type: 'string',
+              example: 'Juan Morales',
+            },
+            telefono: {
+              type: 'string',
+              example: '555-123-4567',
+            },
+            correo: {
+              type: 'string',
+              example: 'contacto@morales.com',
+            },
+            direccion: {
+              type: 'string',
+              example: 'Calle Reforma #123, CDMX',
+            },
+            productosSuministrados: {
+              type: 'array',
+              items: {
+                type: 'string',
+                example: '662dffe4c82795ec294f8a7c',
+              },
+            },
+          },
+        },
       },
     },
   },
