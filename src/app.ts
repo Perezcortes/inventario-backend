@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import productRoutes from './routes/productRoutes';
+import userRoutes from './routes/userRoutes';
 
 dotenv.config();
 
@@ -19,5 +20,6 @@ app.get('/api/health', (req, res) => {
 
 // Rutas de productos (CRUD)
 app.use('/api/products', productRoutes);
+app.use('/api/usuarios', userRoutes);
 
 export default app;

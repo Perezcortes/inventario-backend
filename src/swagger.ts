@@ -6,7 +6,7 @@ const swaggerOptions = {
     info: {
       title: 'Inventario API',
       version: '1.0.0',
-      description: 'API para gestión de productos de inventario',
+      description: 'API para gestión de productos de inventario y usuarios',
     },
     components: {
       schemas: {
@@ -14,26 +14,11 @@ const swaggerOptions = {
           type: 'object',
           required: ['nombre', 'precio', 'stock', 'categoria'],
           properties: {
-            nombre: {
-              type: 'string',
-              example: 'Laptop HP',
-            },
-            precio: {
-              type: 'number',
-              example: 12000,
-            },
-            stock: {
-              type: 'integer',
-              example: 10,
-            },
-            categoria: {
-              type: 'string',
-              example: 'Tecnología',
-            },
-            descripcion: {
-              type: 'string',
-              example: 'Laptop HP Pavilion, 16GB RAM, 512GB SSD',
-            },
+            nombre: { type: 'string', example: 'Laptop HP' },
+            precio: { type: 'number', example: 12000 },
+            stock: { type: 'integer', example: 10 },
+            categoria: { type: 'string', example: 'Tecnología' },
+            descripcion: { type: 'string', example: 'Laptop HP Pavilion, 16GB RAM, 512GB SSD' },
             imagen: {
               type: 'string',
               format: 'uri',
@@ -41,10 +26,24 @@ const swaggerOptions = {
             },
           },
         },
+        Usuario: {
+          type: 'object',
+          required: ['nombre', 'correo', 'contraseña', 'rol'],
+          properties: {
+            nombre: { type: 'string', example: 'Juan Pérez' },
+            correo: { type: 'string', format: 'email', example: 'juan@example.com' },
+            contraseña: { type: 'string', example: '123456' },
+            rol: {
+              type: 'string',
+              enum: ['Administrador', 'Soporte Técnico', 'Mantenimiento', 'Contador', 'Atención al Cliente'],
+              example: 'Administrador',
+            },
+          },
+        },
       },
     },
   },
-  apis: ['./src/routes/*.ts'], // Swagger buscará anotaciones aquí
+  apis: ['./src/routes/*.ts'], // Asegúrate que aquí estén tus anotaciones Swagger
 };
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
